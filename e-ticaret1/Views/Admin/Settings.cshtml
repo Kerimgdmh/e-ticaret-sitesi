@@ -1,0 +1,120 @@
+﻿@model e_ticaret1.ViewModels.AdminViewModel
+
+@* Slider Görselleri Yönetimi *@
+<div class="form-section">
+    <h2>Slider Görselleri Yönetimi</h2>
+
+    <!-- Mevcut görselleri listele -->
+    <form method="post" enctype="multipart/form-data" action="@Url.Action("UpdateSliderImages", "Admin")">
+        @for (int i = 0; i < Model.SliderImages.Count(); i++)
+        {
+            <div class="form-group">
+                <label>Slider Görseli @Model.SliderImages[i].Id</label>
+                <img src="@Model.SliderImages[i].ImageUrl" alt="Slider Görseli @Model.SliderImages[i].Id" class="img-thumbnail" width="150" />
+                <input type="file" name="SliderImages[@i].Image" class="form-control" />
+                <input type="hidden" name="SliderImages[@i].Id" value="@Model.SliderImages[i].Id" />
+                <input type="hidden" name="SliderImages[@i].ImageUrl" value="@Model.SliderImages[i].ImageUrl" />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Slider Görsellerini Güncelle</button>
+    </form>
+</div>
+
+
+
+
+@* Popüler Ürünler Yönetimi *@
+<div class="form-section">
+    <h2>Popüler Ürünler</h2>
+    <form method="post" action="@Url.Action("UpdatePopularProducts", "Admin")" enctype="multipart/form-data">
+        @foreach (var product in Model.Products)
+        {
+            <div class="form-group">
+                <label>Ürün Adı: </label>
+                <input type="text" name="Products[@product.Id].Name" value="@product.Name" class="form-control" />
+
+                <label>Ürün Fiyatı: </label>
+                <input type="text" name="Products[@product.Id].Price" value="@product.Price" class="form-control" />
+
+                <label>Ürün Görseli: </label>
+                <input type="file" name="Images[@product.Id]" class="form-control" />
+            </div>
+        }
+
+        <button type="submit" class="btn btn-primary">Popüler Ürünleri Güncelle</button>
+    </form>
+</div>
+
+
+
+
+
+@* Yeni Ürünler Yönetimi *@
+<div class="form-section">
+    <h2>Yeni Ürünler</h2>
+    <form method="post" action="@Url.Action("UpdateNewProducts", "Admin")">
+        @foreach (var newProduct in Model.NewProducts)
+        {
+            <div class="form-group">
+                <label>Ürün Adı: </label>
+                <input type="text" name="NewProducts[@newProduct.Id].Name" value="@newProduct.Name" class="form-control" />
+                <label>Açıklama: </label>
+                <input type="text" name="NewProducts[@newProduct.Id].Description" value="@newProduct.Description" class="form-control" />
+                <label>Ürün Görseli: </label>
+                <input type="file" name="NewProducts[@newProduct.Id].Image" class="form-control" />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Yeni Ürünleri Güncelle</button>
+    </form>
+</div>
+
+@* Kampanyalar Yönetimi *@
+<div class="form-section">
+    <h2>Kampanyalar</h2>
+    <form method="post" action="@Url.Action("UpdateCampaigns", "Admin")">
+        @foreach (var campaign in Model.Campaigns)
+        {
+            <div class="form-group">
+                <label>Kampanya Başlığı: </label>
+                <input type="text" name="Campaigns[@campaign.Id].Title" value="@campaign.Title" class="form-control" />
+                <label>Kampanya Açıklaması: </label>
+                <input type="text" name="Campaigns[@campaign.Id].Description" value="@campaign.Description" class="form-control" />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Kampanyaları Güncelle</button>
+    </form>
+</div>
+
+@* Blog Yönetimi *@
+<div class="form-section">
+    <h2>Blog</h2>
+    <form method="post" action="@Url.Action("UpdateBlog", "Admin")">
+        @foreach (var blog in Model.Blogs)
+        {
+            <div class="form-group">
+                <label>Blog Başlığı: </label>
+                <input type="text" name="Blogs[@blog.Id].Title" value="@blog.Title" class="form-control" />
+                <label>Blog İçeriği: </label>
+                <textarea name="Blogs[@blog.Id].Content" class="form-control">@blog.Content</textarea>
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Blogları Güncelle</button>
+    </form>
+</div>
+
+@* Blog Footer Yönetimi *@
+<div class="form-section">
+    <h2>Blog Footer</h2>
+    <form method="post" action="@Url.Action("UpdateBlogFooter", "Admin")">
+        @foreach (var footer in Model.BlogFooters)
+        {
+            <div class="form-group">
+                <label>Başlık: </label>
+                <input type="text" name="BlogFooters[@footer.Id].Title" value="@footer.Title" class="form-control" />
+                <label>Link: </label>
+                <input type="text" name="BlogFooters[@footer.Id].ButtonLink" value="@footer.ButtonLink" class="form-control" />
+            </div>
+        }
+        <button type="submit" class="btn btn-primary">Blog Footer'ı Güncelle</button>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+﻿@model e_ticaret1.Models.User
+
+@{
+    ViewData["Title"] = "Kullanıcı Sil";
+}
+
+<h1>Üstü Sil</h1>
+
+<h4>Silmek istediğiniz kullanıcıyı onaylayın:</h4>
+<div>
+    <h4>@Model.UserName</h4>
+    <p>Email: @Model.Email</p>
+</div>
+
+<form asp-action="DeleteUser" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Sil</button>
+    <a asp-action="Index" class="btn btn-secondary">Geri Dön</a>
+</form>

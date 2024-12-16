@@ -1,0 +1,80 @@
+﻿@model List<CartItem>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .cart-item-image {
+            width: 50px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h2>Sepetim</h2>
+                <div id="cartItemsContainer">
+                    @if (Model.Count == 0)
+                    {
+                        <p>Sepetiniz boş.</p>
+                    }
+                    else
+                    {
+                        @foreach (var item in Model)
+                        {
+                            <div class="card mb-3">
+                                <div class="card-body d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h5>@item.Name</h5>
+                                    </div>
+                                    <img src="@item.ImageUrl" alt="@item.Name" class="cart-item-image">
+                                    <div>
+                                        <!-- Miktarı azalt -->
+                                        <form method="post" action="/Cart/UpdateQuantity" style="display:inline;">
+                                            <input type="hidden" name="productId" value="@item.ProductId" /> <!-- Id kullanıldı -->
+                                            <input type="hidden" name="change" value="-1" />
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">-</button>
+                                        </form>
+                                        <span class="mx-2">@item.Quantity</span>
+                                        <!-- Miktarı artır -->
+                                        <form method="post" action="/Cart/UpdateQuantity" style="display:inline;">
+                                            <input type="hidden" name="productId" value="@item.ProductId" /> <!-- Id kullanıldı -->
+                                            <input type="hidden" name="change" value="1" />
+                                            <button type="submit" class="btn btn-outline-secondary btn-sm">+</button>
+                                        </form>
+                                    </div>
+                                    <p class="text-muted">@((item.Price * item.Quantity).ToString("F2")) TL</p>
+
+                                    <!-- Ürünü kaldır -->
+                                    <form method="post" action="/Cart/RemoveFromCart" style="display:inline;">
+                                        <input type="hidden" name="productId" value="@item.ProductId" /> <!-- Id kullanıldı -->
+                                        <button type="submit" class="btn btn-danger btn-sm">Kaldır</button>
+                                    </form>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-4">
+                <h4>Toplam Fiyat</h4>
+                <div id="totalPrice" class="border p-3 text-center">
+                    @Model.Sum(item => item.Price * item.Quantity).ToString("F2") TL
+                </div>
+                <form method="post" action="/Cart/ClearCart">
+                    <button type="submit" class="btn btn-primary mt-3">Sepeti Boşalt</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - e_ticaret1</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/e_ticaret1.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/style.css" asp-append-version="true" /> <!-- Kendi özel CSS dosyanız -->
+    <style>
+        .navbar .search-bar {
+            flex-grow: 1;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+    </style>
+</head>
+<body>
+    <div class="baslik">
+        <div class="telefon">
+            <i class="fas fa-phone" style="font-size: 24px; color:darkblue;"></i> 444 00 00
+        </div>
+        <img src="~/images/header.jpeg" alt="Header Image" />
+    </div>
+    <hr>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <img src="~/images/logo1.jpg" alt="Logo" width="70" height="70">
+                </a>
+
+                <!-- Arama çubuğunu merkeze hizalayın -->
+                <form action="@Url.Action("Search", "Product")" method="get" class="d-flex">
+                    <input type="text" name="query" class="form-control" placeholder="Ürün Ara" />
+                    <button type="submit" class="btn btn-primary ms-2">Ara</button>
+                </form>
+
+
+
+                <!-- Giriş butonu ve sepet simgesi yan yana -->
+                <div class="auth-buttons">
+                    <a href="~/Cart/Index" class="shopping-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <span class="navbar-text">
+                            Hoş geldin, @User.Identity.Name
+                        </span>
+                        <form asp-controller="Account" asp-action="Logout" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-link nav-link">Çıkış Yap</button>
+                        </form>
+                    }
+                    else
+                    {
+                        <a href="~/Account/giris" class="login">
+                            <i class="fas fa-user"></i> Giriş Yap
+                        </a>
+                    }
+                </div>
+            </div>
+        </nav>
+    </header>
+    <hr />
+    <nav class="main-nav">
+        <ul>
+            <li><a href="~/Home/Index">ANASAYFA</a></li>
+            <li>
+                <a href="~/Product/urunler">ÜRÜNLER</a>
+                <ul class="dropdown">
+                    <li><a href="#cozum1">Çözüm 1</a></li>
+                    <li><a href="#cozum2">Çözüm 2</a></li>
+                    <li><a href="#cozum3">Çözüm 3</a></li>
+                </ul>
+            </li>
+            <li><a href="#cozumler">ÇÖZÜMLER</a></li>
+            <li><a href="#kurumsal">KURUMSAL</a></li>
+            <li><a href="#hakkimizda">HAKKIMIZDA</a></li>
+            <li><a href="#iletisim">İLETİŞİM</a></li>
+
+            @if (User.IsInRole("Admin"))
+            {
+                <li><a href="~/Admin">Admin Paneli</a></li> <!-- Admin Paneli Bağlantısı Eklendi -->
+            }
+        </ul>
+    </nav>
+
+    <hr>
+    <div class="">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="footer bg-dark text-center text-white">
+        <div class="container p-4">
+            <div class="row justify-content-between">
+
+                <!-- Sosyal Medya Bağlantıları -->
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <h5 class="text-uppercase">Bizi Takip Edin</h5>
+                    <a href="#" class="me-4 text-reset text-white"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="me-4 text-reset text-white"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="me-4 text-reset text-white"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="me-4 text-reset text-white"><i class="fab fa-linkedin"></i></a>
+                </div>
+
+                <!-- Politikalar -->
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <h5 class="text-uppercase">Politikalar</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-reset">Gizlilik Politikası</a></li>
+                        <li><a href="#" class="text-reset">Kullanım Koşulları</a></li>
+                        <li><a href="#" class="text-reset">İade Politikası</a></li>
+                    </ul>
+                </div>
+
+                <!-- İletişim Bilgileri -->
+                <div class="col-lg-3 col-md-6 mb-3">
+                    <h5 class="text-uppercase">İletişim</h5>
+                    <p class="mb-0">
+                        Email: info@aleff.com<br>
+                        Telefon: +90 123 456 7890<br>
+                        Adres: Örnek Mah. No: 123, Şehir, Ülke
+                    </p>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Footer Alt Metni -->
+        <div class="text-center p-2  text-white">
+            © 2024 aleff. Tüm hakları saklıdır.
+        </div>
+    </footer>
+
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/giris.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

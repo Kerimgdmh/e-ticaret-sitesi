@@ -1,0 +1,838 @@
+﻿/* Temel stil ayarları */
+body {
+    font-family: Arial, sans-serif;
+    bottom: 0;
+    margin: 0;
+    padding: 0;
+    color: #333;
+}
+.baslik {
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color:darkblue;
+    position: relative;
+}
+
+.telefon {
+    position: absolute;
+    left: 0;
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Telefon simgesinin kenardan uzaklığını ayarlar */
+}
+
+.baslik img {
+    width: 800px;
+}
+
+/* Sepet ikonunun normal hali */
+.shopping-cart-icon {
+    color: #000; /* Normal rengi siyah */
+    position: relative;
+    font-size: 1.5rem; /* Boyutlandırma */
+    text-decoration: none;
+}
+
+    /* Üzerine gelindiğinde rengi değişsin */
+    .shopping-cart-icon:hover {
+        color: #007bff; /* Hover rengi (mavi) */
+    }
+
+        /* Üzerine gelindiğinde rozetin rengi değişsin */
+        .shopping-cart-icon:hover .badge {
+            background-color: #0056b3; /* Hover rozet rengi (koyu mavi) */
+        }
+
+/*üstüne gelindiğinde yakınlaşma efektini durduruyor.*/
+.custom-border:hover {
+    transform: none !important;
+    transition: none !important;
+}
+
+
+header {
+    background-color: white;
+    color: black;
+    padding: 1rem;
+    text-align: center;
+}
+
+
+
+.products {
+    padding: 2rem;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.product {
+    border: 1px solid #ddd;
+    padding: 1rem;
+    max-width: 200px;
+}
+
+    .product img {
+        width: 100%;
+        height: auto;
+    }
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+/* Navbar düzenleme */
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: white;
+    color: black;
+}
+
+.logo img {
+    width: 50px;
+    height: 50px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    max-width: 400px;
+    margin: 0 1rem;
+}
+
+    .search-bar input {
+        width: 100%;
+        padding: 0.5rem;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+    }
+
+    .search-bar .btn {
+        padding: 0.5rem;
+        background-color:blue;
+        color: white;
+        border: none;
+        border-radius: 0 4px 4px 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 41px;
+    }
+
+.auth-buttons {
+    display: flex;
+    align-items: center;
+
+}
+
+    .auth-buttons .login {
+        color:blue;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+        .auth-buttons .login:hover {
+            text-decoration: underline;
+           
+        }
+
+#carouselExampleIndicators {
+    padding: 10px;
+    margin: 0 auto;
+}
+
+.carousel {
+    width: 100%; /* İstediğin genişlik */
+    height: 500px; /* İstediğin yükseklik */
+    overflow: hidden; /* Taşmayı gizle */
+}
+
+.carousel-inner {
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-item {
+    height: 100%; /* Carousel yüksekliğine uyacak şekilde içerik */
+}
+
+    .carousel-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Resmi, oranını koruyarak alanı kaplayacak şekilde ayarla */
+    }
+
+.main-nav {
+    font-family: Arial, Helvetica, sans-serif;
+    justify-content: center;
+    background-color: white;
+    padding: 1rem 2rem; /* Menüye iç boşluk ekler */
+    font-weight: bold; /* Yazıyı kalınlaştırır */
+}
+
+    .main-nav ul {
+        list-style: none;
+        display: flex;
+        justify-content: space-between; /* Öğeler arasını açar */
+        align-items: center;
+        width: 100%;
+        max-width: 1200px; /* Maksimum genişlik ayarı yapar */
+        margin: 0 auto; /* Ortalamak için */
+        padding: 0;
+    }
+
+        .main-nav ul li {
+            position: relative;
+        }
+
+            .main-nav ul li a {
+                color: black;
+                text-decoration: none;
+                font-size: 14px;
+                padding: 10px 15px; /* Metinler arasını açmak için padding ekler */
+                display: block;
+            }
+
+                .main-nav ul li a:hover {
+                    color: #2336a3;
+                }
+
+            /* Alt menü gizli durumda */
+            .main-nav ul li .dropdown {
+                display: none;
+                position: absolute;
+                top: 100%; /* Ana menünün altına yerleştir */
+                left: 0;
+                background-color: #f9f9f9;
+                min-width: 150px;
+                box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+                z-index: 1;
+            }
+
+                /* Alt menü öğeleri */
+                .main-nav ul li .dropdown li {
+                    display: block;
+                }
+
+                    .main-nav ul li .dropdown li a {
+                        padding: 10px 15px;
+                        color: #333;
+                        text-decoration: none;
+                        display: block;
+                    }
+
+                        /* Alt menü öğeleri üzerine gelince arka plan rengi */
+                        .main-nav ul li .dropdown li a:hover {
+                            background-color: #ddd;
+                        }
+
+            /* Üst menü öğesi üzerine gelindiğinde alt menünün görünmesini sağlar */
+            .main-nav ul li:hover .dropdown {
+                display: block;
+            }
+
+
+
+
+
+
+.custom-border {
+    border: 2px solid black; /* Kenar çizgisi */
+    border-radius: 20px; /* Kenarları hafif yuvarlatır */
+    margin-top: 2px; /* Üstten boşluk */
+    margin-bottom: 2px; /* Alttan boşluk */
+}
+
+.row {
+    margin-top:10px;
+    gap: 15px; /* Kartlar arasında 15px boşluk */
+}
+
+.custom-border {
+    border: 1px solid #ccc; /* Kenarlık rengi */
+    border-radius: 5px; /* Kenar yuvarlama */
+    padding: 10px; /* İç boşluk */
+    transition: transform 0.3s; /* Geçiş efekti */
+}
+
+    .custom-border:hover {
+        transform: scale(1.05); /* Üzerine gelindiğinde büyütme efekti */
+    }
+
+.card-img-top {
+    width: 100%; /* Görselin sütun genişliğine uyması için tam genişlik */
+    height: auto; /* Yüksekliği oran koruyarak ayarla */
+    max-height: 150px; /* Maksimum yükseklik ayarı */
+}
+
+/* Yazı boyutu ve stilleri */
+.product-name {
+    font-size: 18px; /* Ürün adının yazı boyutu */
+    font-weight: bold; /* Ürün adının kalınlığı */
+}
+
+.product-price {
+    font-size: 16px; /* Fiyatın yazı boyutu */
+    color: #007bff; /* Fiyat rengi */
+}
+
+.product-description {
+    font-size: 14px; /* Ürün açıklamasının yazı boyutu */
+    color: #555; /* Ürün açıklaması rengi */
+    margin-top: 5px; /* Açıklama ile üstteki içerik arasındaki boşluk */
+}
+
+
+.pagination {
+    margin: 20px 0; /* Sayfalandırma alanına üst ve alt boşluk */
+}
+
+.page-link {
+    color: #007bff; /* Bootstrap'ın mavi rengi */
+}
+
+.page-item.disabled .page-link {
+    color: #6c757d; /* Disable durumda gri renk */
+    pointer-events: none; /* Tıklanamaz duruma getirir */
+}
+
+.page-item.active .page-link {
+    background-color: #007bff; /* Aktif sayfa mavi arka plan */
+    border-color: #007bff; /* Aktif sayfanın kenar rengi */
+    color: white; /* Aktif sayfadaki metin rengi beyaz */
+}
+
+
+
+
+/* Admin Index css */
+
+.sidebar {
+    background-color: #f8f9fa; /* Menünün arka plan rengi */
+    height: 100%; /* Ana içerikle aynı boyutta */
+}
+
+    .sidebar a {
+        color: #333; /* Menü bağlantı rengi */
+    }
+
+        .sidebar a:hover {
+            background-color: #e9ecef; /* Menü bağlantısı hover rengi */
+        }
+
+.wide-section {
+    width: 100%;
+    padding: 0px; /* Üst ve alt bo?luk */
+    text-align: center;
+}
+
+.container {
+    max-width: 1500px;
+    margin: 0 auto; /* Ortaya hizala */
+}
+
+/*----------------------------*/
+.populer {
+    height: 600px;
+    background-color: orange;
+}
+
+/* Ana Container */
+.popular-products {
+    background-color: orange;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    .popular-products h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+/* Ürün Listesi */
+.product-list {
+    height: 500px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+/* Ürün Kart? */
+.product-card {
+    height: 100%;
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Rozet */
+.badge {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: orange;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Ürün Resmi */
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Ürün Ba?l?k */
+.product-title {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Ürün De?erlendirmesi */
+.product-rating {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Ürün Fiyat? */
+.product-price {
+    font-size: 18px;
+    color: #e60000;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Ürün Etiketleri */
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #ffeb3b;
+    color: #333;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.populer {
+    height: 600px;
+    background-color: orange;
+}
+
+/* Ana Container */
+.popular-products {
+    background-color: orange;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+    .popular-products h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+/* Ürün Listesi */
+.product-list {
+    height: 500px;
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 15px;
+    padding: 10px 0;
+}
+
+/* Ürün Kart? */
+.product-card {
+    height: 100%;
+    width: 300px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative;
+    flex-shrink: 0;
+}
+
+/* Rozet */
+.badge {
+    position: absolute;
+    top: -10px;
+    left: 10px;
+    background-color: orange;
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 12px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Ürün Resmi */
+.product-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Ürün Ba?l?k */
+.product-title {
+    font-size: 16px;
+    color: #333;
+    margin: 10px 0;
+    font-weight: bold;
+}
+
+/* Ürün De?erlendirmesi */
+.product-rating {
+    font-size: 14px;
+    color: #666;
+    margin: 5px 0;
+}
+
+/* Ürün Fiyat? */
+.product-price {
+    font-size: 18px;
+    color: #e60000;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* Ürün Etiketleri */
+.product-tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+}
+
+.tag {
+    background-color: #ffeb3b;
+    color: #333;
+    font-size: 12px;
+    padding: 3px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/*-----------------------------*/
+.kampanya {
+    height: 150px;
+    background-color: white;
+}
+
+/* Ana Banner Alan? */
+.campaign-banner {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background-color: #f8f8f8;
+    position: relative;
+    border: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+}
+
+/* Kampanya ?eridi */
+.campaign-track {
+    display: flex;
+    gap: 50px; /* Kampanya ö?eleri aras?ndaki bo?luk */
+    animation: scrollLeft 20s linear infinite;
+}
+
+/* Kampanya Ö?esi */
+.campaign-item {
+    white-space: nowrap;
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    background-color: #ffdd57;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Animasyon */
+@keyframes scrollLeft {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/*----------------------------*/
+.yeniurunler {
+    height: 630px;
+    background-color: orange;
+}
+
+.productnew {
+    width: 100%;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: orange;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .productnew h2 {
+        font-size: 24px;
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+.product-item {
+    display: inline-block;
+    height: 100%;
+    width: 400px;
+    margin: 10px;
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+    .product-item img {
+        width: 100%;
+        height: auto;
+        border-radius: 4px;
+        margin-bottom: 10px;
+    }
+
+    .product-item h3 {
+        font-size: 18px;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .product-item p {
+        font-size: 14px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+
+    .product-item button {
+        padding: 10px 15px;
+        font-size: 14px;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+        .product-item button:hover {
+            background-color: #0056b3;
+        }
+
+/*-----------------------------*/
+.onecikan {
+    height: 400px;
+    background-color: orange;
+}
+
+
+.blog_footer {
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    / ?çerikleri yatay olarak ortalar / margin: 0 auto;
+    / Tüm .blog_footer bölümünü ortalar / max-width: 1200px;
+    / Maksimum geni?lik belirleyebilirsiniz /
+}
+
+.footer-card {
+    display: inline-block;
+    width: 350px;
+    display: grid;
+}
+
+    .footer-card .img {
+        height: 250px;
+        width: 100%;
+        position: relative;
+        background-size: cover;
+        background-position: center;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .footer-card .content {
+        position: absolute;
+        bottom: 10px;
+        left: 10px;
+        color: #ffffff;
+        background-color: rgba(0, 0, 0, 0.5);
+        padding: 10px;
+        border-radius: 5px;
+        width: calc(100% - 20px);
+    }
+
+    .footer-card .category {
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    .footer-card .date {
+        font-size: 12px;
+        color: #ccc;
+        margin-top: 5px;
+    }
+
+    .footer-card h3 {
+        font-size: 16px;
+        margin: 10px 0;
+    }
+
+    .footer-card a {
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+/*----------------------------*/
+.blog {
+    height: 800px;
+    width: 100%;
+    background-color: white;
+}
+
+.blogsol {
+    background-color: white;
+}
+
+.blogsag {
+    background-color: white;
+}
+
+.blog-post {
+    margin-bottom: 40px;
+}
+
+    .blog-post img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+.blog-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.blog-content {
+    font-size: 1.1rem;
+    margin-top: 15px;
+}
+
+.quote-box {
+    background-color: #f8f9fa;
+    border-left: 5px solid #007bff;
+    padding: 10px 20px;
+    margin: 20px 0;
+}
+
+    .quote-box p {
+        font-style: italic;
+    }
+
+.image-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+    .image-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .image-card .card-body {
+        padding: 15px;
+    }
+
+.footer {
+    padding: 20px 0;
+    background-color: #343a40;
+    color: white;
+}
+
+
+
+.footer .text-reset {
+    color: #ced4da;
+}
+
+    .footer .text-reset:hover {
+        color: #f8f9fa;
+    }
+
+
+
+

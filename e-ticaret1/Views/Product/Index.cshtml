@@ -1,0 +1,30 @@
+﻿@model IEnumerable<e_ticaret1.Models.Product>
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8" />
+    <title>Ürünler</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Ürünler</h1>
+
+        <!-- Ürünleri silen buton -->
+        <form asp-action="ClearProducts" method="post" onsubmit="return confirm('Tüm ürünleri silmek istediğinize emin misiniz?');">
+            <button type="submit" class="btn btn-danger mb-3">Tüm Ürünleri Sil</button>
+        </form>
+
+        <!-- Ürünleri ekleyen buton -->
+        <form asp-action="AddProducts" method="post">
+            <button type="submit" class="btn btn-primary mb-3">Ürünleri Ekle</button>
+        </form>
+
+        @Html.Partial("_ProductList", Model) <!-- Partial view çağrısı -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

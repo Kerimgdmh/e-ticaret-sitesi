@@ -1,0 +1,121 @@
+﻿@model e_ticaret1.ViewModels.AdminViewModel
+
+@* Carousel for Slider Images *@
+<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+        @for (int i = 0; i < Model.SliderImages.Count(); i++)
+        {
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="@i" class="@(i == 0 ? "active" : "")" aria-current="true" aria-label="Slide @(i + 1)"></button>
+        }
+    </div>
+    <div class="carousel-inner">
+        @foreach (var image in Model.SliderImages)
+        {
+            <div class="carousel-item @(image == Model.SliderImages.First() ? "active" : "")">
+                <img src="@image.ImageUrl" class="d-block w-100" alt="@image.ImageUrl">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>@image.ImageUrl</h5>
+                </div>
+            </div>
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>
+
+@* Popular Products *@
+<section class="wide-section">
+    <div class="populer">
+        <div class="popular-products">
+            <p class="h3 mt-3">Popüler Ürünler</p>
+            <div class="product-list">
+                @foreach (var product in Model.Products)
+                {
+                    <div class="product-card">
+                        <div class="badge">KARGO BEDAVA</div>
+                        <img src="@product.ImageUrl" alt="@product.Name">
+                        <h3 class="product-title">@product.Name</h3>
+                        <p class="product-rating">@product.Rating ★★★★★</p>
+                        <p class="product-price">@product.Price</p>
+                        <div class="product-tags">
+                            <span class="tag">10 TL Kupon</span>
+                            <span class="tag">Çok Al Az Öde</span>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* New Products *@
+<section class="wide-section">
+    <div class="yeniurunler">
+        <div class="productnew">
+            <p class="h3 mt-3">Yeni Ürünler</p>
+            <div class="product-item">
+                @foreach (var newProduct in Model.NewProducts)
+                {
+                    <img src="@newProduct.ImageUrl" alt="@newProduct.Name">
+                    <h3>@newProduct.Name</h3>
+                    <p>@newProduct.Description</p>
+                    <button>Detaylı İncele</button>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Campaigns *@
+<section class="wide-section">
+    <div class="kampanya">
+        <div class="campaign-banner">
+            <div class="campaign-track">
+                @foreach (var campaign in Model.Campaigns)
+                {
+                    <a href="#" class="campaign-item">@campaign.Title: @campaign.Description</a>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+@* Blog *@
+<section class="wide-section">
+    <div class="blog d-flex justify-content-center">
+        <div class="blogsol col d-flex justify-content-center align-items-center">
+            <img src="/images/logo1.jpg" class="rounded" alt="...">
+        </div>
+        <div class="blogsag col text-center d-flex flex-column justify-content-center">
+            <p class="h3 mt-3">Blog</p>
+            <p class="d-flex justify-content-center align-items-center mt-5">Blog hakkında bilgi</p>
+        </div>
+    </div>
+</section>
+
+@* Blog Footer *@
+<section class="wide-section">
+    <div class="onecikan">
+        <div class="blog_footer">
+            @foreach (var footer in Model.BlogFooters)
+            {
+                <div class="footer-card">
+                    <div class="img" style="background-image: url('@footer.ImageUrl')">
+                        <div class="content">
+                            <span class="category">@footer.Category</span>
+                            <span class="date">@footer.Date.ToString("dd MMMM yyyy")</span>
+                            <h3>@footer.Title</h3>
+                            <a href="@footer.ButtonLink">Devamı</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>

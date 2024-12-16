@@ -1,0 +1,60 @@
+﻿@{
+    ViewData["Title"] = "Üye Ol veya Giriş Yap"; // Sayfa başlığı
+}
+@{
+    Layout = "_Layout2";
+}
+
+<div class="main-container">
+    <div class="form-container">
+        <h2>Üye Ol veya Giriş Yap</h2>
+
+        <div class="form-toggle">
+            <button onclick="showLogin()">Giriş Yap</button>
+            <button onclick="showSignup()">Üye Ol</button>
+        </div>
+
+        @if (!ViewData.ModelState.IsValid)
+        {
+            <div class="alert alert-danger">
+                @Html.ValidationSummary()
+            </div>
+        }
+
+        <div id="login-form" class="form show">
+            <h3>Giriş Yap</h3>
+            <form asp-controller="Account" asp-action="Login" method="post">
+                <input type="text" name="Username" placeholder="Kullanıcı Adı" required>
+                <input type="password" name="Password" placeholder="Şifre" required>
+                <button type="submit">Giriş Yap</button>
+            </form>
+        </div>
+
+        <div id="signup-form" class="form hidden">
+            <h3>Üye Ol</h3>
+            <form asp-controller="Account" asp-action="Register" method="post">
+                <input type="text" name="Username" placeholder="Kullanıcı Adı" required>
+                <input type="email" name="Email" placeholder="Email" required>
+                <input type="password" name="Password" placeholder="Şifre" required>
+                <input type="password" name="ConfirmPassword" placeholder="Şifre Tekrar" required>
+                <button type="submit">Üye Ol</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="~/images/g11.jpg" alt="Welcome Image">
+    </div>
+</div>
+
+<script>
+    function showLogin() {
+        document.getElementById('login-form').classList.remove('hidden');
+        document.getElementById('signup-form').classList.add('hidden');
+    }
+
+    function showSignup() {
+        document.getElementById('signup-form').classList.remove('hidden');
+        document.getElementById('login-form').classList.add('hidden');
+    }
+</script>

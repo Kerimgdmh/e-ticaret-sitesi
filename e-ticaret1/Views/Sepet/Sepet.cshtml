@@ -1,0 +1,131 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Resimlerin boyutunu uyarlamak için stil ayarları */
+        .cart-item-image {
+            width: 50px; /* Resim genişliği */
+            height: auto; /* Yükseklik otomatik olarak ayarlanacak */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <h2>Sepetim</h2>
+                <div id="cartItemsContainer"></div>
+            </div>
+            <div class="col-4">
+                <h4>Toplam Fiyat</h4>
+                <div id="totalPrice" class="border p-3 text-center">
+                    0.00 TL
+                </div>
+                <button class="btn btn-primary mt-3" onclick="purchase()">Satın Al</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="purchaseModal" tabindex="-1" aria-labelledby="purchaseModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="purchaseModalLabel">Alışveriş Tamamlandı</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="preventClose()"></button>
+                </div>
+                <div class="modal-body">
+                    Alışverişiniz için teşekkürler! Güzel günlerde kullanmanızı dileriz!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" id="modalCloseButton">Kapat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let cartItemsContainer = document.getElementById("cartItemsContainer");
+            let totalPriceElement = document.getElementById("totalPrice");
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            let totalPrice = 0; // Toplam fiyatı tutacak değişken
+
+            if (cart.length === 0) {
+                cartItemsContainer.innerHTML = "<p>Sepetiniz boş.</p>";
+            } else {
+                cartItemsContainer.innerHTML = cart.map((item, index) => {
+                    let itemTotalPrice = (item.price * (item.quantity || 1)).toFixed(2);
+                    totalPrice += parseFloat(itemTotalPrice); // Toplam fiyata ekle
+                    return `
+                                                <div class="card mb-3">
+                                                    <div class="card-body d-flex justify-content-between align-items-center">
+                                                        <div>
+                                                            <h5>${item.name}</h5>
+                                                        </div>
+                                                        <img src="${item.imageUrl}" alt="${item.name}" class="cart-item-image">
+                                                        <div>
+                                                            <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${index}, -1)">-</button>
+                                                            <span id="quantity-${index}" class="mx-2">${item.quantity || 1}</span>
+                                                            <button class="btn btn-outline-secondary btn-sm" onclick="updateQuantity(${index}, 1)">+</button>
+                                                        </div>
+                                                        <p class="text-muted" id="price-${index}">${itemTotalPrice} TL</p>
+                                                        <button class="btn btn-danger btn-sm" onclick="removeFromCart(${index})">Kaldır</button>
+                                                    </div>
+                                                </div>
+                                            `;
+                }).join("");
+
+                // Toplam fiyatı göster
+                totalPriceElement.textContent = totalPrice.toFixed(2) + " TL";
+            }
+
+            // Modal kapandığında sayfayı yenile
+            document.getElementById('modalCloseButton').addEventListener('click', function () {
+                sessionStorage.setItem("cart", JSON.stringify([])); // Sepeti temizle
+                setTimeout(() => {
+                    location.reload(); // Sayfayı yenileyerek sepeti güncelle
+                }, 1000);
+            });
+        });
+
+        function updateQuantity(index, change) {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            let item = cart[index];
+            item.quantity = (item.quantity || 1) + change;
+
+            if (item.quantity < 1) {
+                item.quantity = 1;
+            }
+
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            location.reload(); // Sayfayı yenileyerek güncellenmiş listeyi göster
+        }
+
+        function removeFromCart(index) {
+            let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+            cart.splice(index, 1); // İlgili ürünü sepetten sil
+            sessionStorage.setItem("cart", JSON.stringify(cart));
+            location.reload(); // Sayfayı yenileyerek güncellenmiş listeyi göster
+        }
+
+        function purchase() {
+            // Modal'ı göster
+            let purchaseModal = new bootstrap.Modal(document.getElementById('purchaseModal'));
+            purchaseModal.show();
+        }
+
+        function preventClose() {
+            // Modalı kapatmayı engelle
+            return false;
+        }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
